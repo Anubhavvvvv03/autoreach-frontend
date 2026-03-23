@@ -1,0 +1,33 @@
+.profile-page {
+  max-width: 800px;
+}
+
+.profile-card {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border) !important;
+  padding: 16px;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.profile-card .ant-empty-image {
+  height: 80px !important;
+  margin-bottom: 24px !important;
+}
+
+.profile-card .ant-form-item-label label {
+  font-weight: 500 !important;
+}
+
+.profile-card .ant-input,
+.profile-card .ant-input-textarea {
+  border-radius: var(--radius) !important;
+}
+
+.profile-card .ant-input:focus,
+.profile-card .ant-input-textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.1) !important;
+}

@@ -1,0 +1,72 @@
+.app-sidebar {
+  display: flex !important;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky !important;
+  top: 0;
+  left: 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.brand-icon { 
+  color: var(--accent);
+  font-size: 24px;
+}
+
+.sidebar-menu {
+  border-inline-end: none !important;
+  flex: 1;
+}
+
+.sidebar-menu .ant-menu-item-selected {
+  background-color: rgba(255, 204, 0, 0.1) !important;
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+.sidebar-menu .ant-menu-item-selected .anticon {
+  color: var(--accent) !important;
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 16px;
+  background: #fff;
+}
+
+.user-info {
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.user-email {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logout-btn {
+  height: 38px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-content {
+  padding: 32px;
+  background-color: var(--bg-secondary);
+  min-height: 100vh;
+}
