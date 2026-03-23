@@ -58,7 +58,7 @@ export default function DashboardPage() {
             ]}
           >
             <Card.Meta 
-              title="Smart Profile"
+              title="Smart User Profile"
               description="Manage your professional experience and preferences to optimize AI-powered matching."
             />
           </Card>
