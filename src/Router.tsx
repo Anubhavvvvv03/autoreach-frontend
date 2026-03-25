@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import ResumePage from './pages/ResumePage';
+import MessageGenerationPage from './pages/MessageGenerationPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
@@ -31,6 +32,7 @@ export default function Router() {
         {/* Protected App Routes */}
         <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/generate" element={<MessageGenerationPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/resume" element={<ResumePage />} />
         </Route>

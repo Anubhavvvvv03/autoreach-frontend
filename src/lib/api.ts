@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+export interface ApiResponse<T = any> {
+  success: boolean;
+  message: string;
+  data: T;
+}
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
@@ -16,13 +22,19 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Global response interceptor: redirect to login on 401
+// Global response interceptor
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    // Return the inner 'data' from the { success, message, data } wrapper
+    return response.data;
+  },
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('ar_token');
-      window.location.href = '/login';
+      // Only redirect if not already on login/signup
+      if (!window.location.pathname.includes('/login') && !window.location.pathname.includes('/signup')) {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

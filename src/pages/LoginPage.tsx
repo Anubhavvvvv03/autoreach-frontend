@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Form, Input, Button, Alert, Typography } from 'antd';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
+import { MailOutlined, LockOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -29,7 +29,7 @@ export default function LoginPage() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      storeLogin(data.token, { id: '', email: data.email });
+      storeLogin(data.token, data.user);
       navigate('/dashboard');
     },
   });
@@ -40,7 +40,15 @@ export default function LoginPage() {
 
   return (
     <div className="auth-form-container">
-      <Title level={3} style={{ textAlign: 'center', marginBottom: 24 }}>Welcome back</Title>
+      <div className="auth-header" style={{ textAlign: 'center', marginBottom: 32 }}>
+        <div className="auth-logo yellow-gradient-bg" style={{ 
+          width: 56, height: 56, borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', boxShadow: '0 8px 16px var(--accent-glow)' 
+        }}>
+          <ThunderboltOutlined style={{ fontSize: 28, color: '#1a1a1a' }} />
+        </div>
+        <Title level={3}>Sign In to AutoReach</Title>
+        <Text type="secondary">AI-powered outreach, built for you.</Text>
+      </div>
 
       {mutation.isError && (
         <Alert

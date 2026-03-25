@@ -1,54 +1,33 @@
 import api from '../lib/api';
+import type { ApiResponse } from '../lib/api';
 
-export type ResumeStatus = 'PENDING' | 'SUCCESS' | 'FAILED';
+export type ParsingStatus = 'PROCESSING' | 'COMPLETED' | 'FAILED';
 
-export interface ResumeStatusResponse {
-  resume_id: string;
-  status: ResumeStatus;
-  parsed_data: ParsedResume | null;
-  fail_reason: string;
-  created_at: string;
-}
-
-export interface ParsedResume {
-  name: string;
-  email: string;
-  skills: string[];
-  experience: {
-    company_name: string;
-    role: string;
-    start_date: string;
-    end_date: string;
-    work_done: string;
-  }[];
-  projects: {
-    name: string;
-    description: string;
-    tech_stack: string;
-    url: string;
-  }[];
-  education: {
-    degree: string;
-    institution: string;
-    year: string;
-  }[];
+export interface ResumeJobResponse {
+  jobId: string;
+  status: ParsingStatus;
+  progress?: number;
+  results?: {
+    skills: Record<string, any>;
+    experienceSummary: string;
+  };
 }
 
 export interface UploadResumeResponse {
-  resume_id: string;
-  status: ResumeStatus;
+  jobId: string;
+  status: 'PROCESSING';
 }
 
 export const uploadResume = async (file: File): Promise<UploadResumeResponse> => {
   const formData = new FormData();
   formData.append('file', file);
-  const res = await api.post<{ data: UploadResumeResponse }>('/resume/upload', formData, {
+  const res = await api.post<ApiResponse<UploadResumeResponse>>('/resume/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
-  return res.data.data;
+  return (res as any).data;
 };
 
-export const getResumeStatus = async (resumeId: string): Promise<ResumeStatusResponse> => {
-  const res = await api.get<{ data: ResumeStatusResponse }>(`/resume/${resumeId}`);
-  return res.data.data;
+export const getResumeJobStatus = async (jobId: string): Promise<ResumeJobResponse> => {
+  const res = await api.get<ApiResponse<ResumeJobResponse>>(`/resume/jobs/${jobId}`);
+  return (res as any).data;
 };

@@ -1,65 +1,62 @@
 .dashboard-page {
-  max-width: 1200px;
-}
-
-.dashboard-header {
-  margin-bottom: 32px;
-}
-
-.dashboard-header h2 {
-  margin-bottom: 8px !important;
-  font-weight: 700 !important;
-}
-
-.dashboard-cards {
-  margin-top: 16px;
-}
-
-.card-icon-wrapper {
-  padding: 24px 24px 0;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.stat-icon {
-  font-size: 36px;
-  color: var(--accent);
+  padding-bottom: 40px;
 }
 
 .stat-card {
   border-radius: var(--radius-lg) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  transition: var(--transition) !important;
   border: 1px solid var(--border) !important;
-  overflow: hidden;
-  transition: all 0.3s ease !important;
 }
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
   border-color: var(--accent) !important;
 }
 
-.stat-card .ant-card-meta-title {
-  font-size: 1.15rem !important;
-  font-weight: 600 !important;
-  margin-bottom: 8px !important;
+.main-card, .side-card {
+  border-radius: var(--radius-lg) !important;
 }
 
-.stat-card .ant-card-meta-description {
-  color: var(--text-secondary) !important;
-  line-height: 1.6 !important;
+.action-card {
+  border-radius: var(--radius-lg) !important;
+  cursor: pointer;
+  height: 100%;
+  transition: var(--transition) !important;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border) !important;
 }
 
-.stat-card .ant-card-actions {
-  background: #fafafa !important;
-  border-top: 1px solid var(--border) !important;
+.action-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06) !important;
+  border-color: var(--accent) !important;
 }
 
-.stat-card .ant-btn-link {
-  color: #000 !important;
-  font-weight: 600 !important;
+.action-card-content {
+  padding: 8px;
 }
 
-.stat-card .ant-btn-link:hover {
-  color: var(--accent) !important;
+.action-card.yellow-gradient-bg h4,
+.action-card.yellow-gradient-bg p,
+.action-card.yellow-gradient-bg span,
+.action-card.yellow-gradient-bg .ant-typography {
+  color: #1a1a1a !important;
+}
+
+.action-card.yellow-gradient-bg .ant-btn {
+  background: white !important;
+  border: none !important;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 576px) {
+  .stat-card {
+    margin-bottom: 16px;
+  }
 }
