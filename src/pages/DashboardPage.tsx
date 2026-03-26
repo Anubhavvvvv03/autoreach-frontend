@@ -10,7 +10,6 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { getDashboardSummary, getDashboardActivity, getDashboardInsights } from '../services/dashboardService';
-import '../styles/DashboardPage.css';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -47,26 +46,26 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="dashboard-page">
-      <div className="page-header">
+    <div className="pb-10">
+      <div className="mb-8">
         <Space direction="vertical" size={0}>
-          <Title level={2}>AI Intelligence Dashboard</Title>
-          <Paragraph type="secondary">
+          <Title level={2} className="!mb-1">AI Intelligence Dashboard</Title>
+          <Paragraph type="secondary" className="!mb-0">
             Strategic pulse of your outreach operations. Powered by real-time AI analytics.
           </Paragraph>
         </Space>
       </div>
 
-      <Row gutter={[24, 24]} className="stats-row">
+      <Row gutter={[24, 24]} className="mb-6">
         {stats.map((stat, index) => (
           <Col xs={24} sm={12} lg={6} key={index}>
-            <Card className="stat-card" bordered={false}>
+            <Card className="!rounded-2xl !border-[#e5e4e7] !shadow-sm transition-all duration-300 hover:-translate-y-1 hover:!shadow-md hover:!border-[#FFD700]" bordered={false}>
               <Skeleton loading={isSummaryLoading} active paragraph={{ rows: 1 }}>
                 <Statistic
-                  title={<Text type="secondary">{stat.title}</Text>}
+                  title={<Text type="secondary" className="text-sm font-medium uppercase tracking-wider">{stat.title}</Text>}
                   value={stat.value}
-                  prefix={<span style={{ color: stat.color, marginRight: 8 }}>{stat.icon}</span>}
-                  valueStyle={{ fontWeight: 700 }}
+                  prefix={<span style={{ color: stat.color }} className="mr-2 inline-flex items-center">{stat.icon}</span>}
+                  valueStyle={{ fontWeight: 800, fontSize: '1.75rem' }}
                 />
               </Skeleton>
             </Card>
@@ -74,12 +73,12 @@ export default function DashboardPage() {
         ))}
       </Row>
 
-      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
+      <Row gutter={[24, 24]} className="mt-6">
         <Col xs={24} lg={16}>
           <Card 
-            title={<Space><BulbOutlined /> Strategic AI Insights</Space>}
-            extra={<Button type="link">View All</Button>}
-            className="main-card premium-shadow"
+            title={<Space className="font-bold"><BulbOutlined className="text-[#FFD700]" /> Strategic AI Insights</Space>}
+            extra={<Button type="link" className="!text-[#4A4A4A] font-semibold">View All</Button>}
+            className="!rounded-2xl shadow-premium !border-[#e5e4e7]"
           >
             {isInsightsLoading ? (
               <Skeleton active />
@@ -89,10 +88,11 @@ export default function DashboardPage() {
                 dataSource={insights.insights}
                 renderItem={(item) => (
                   <List.Item
-                    actions={[<Button type="primary" size="small" ghost onClick={() => navigate('/generate')}>Execute</Button>]}
+                    actions={[<Button type="primary" size="small" ghost onClick={() => navigate('/generate')} className="!border-[#FFD700] !text-black hover:!bg-[#FFD700]/10">Execute</Button>]}
+                    className="!px-0"
                   >
                     <List.Item.Meta
-                      title={<Space>{item.title} <Tag color={item.priority === 'HIGH' ? 'red' : 'gold'}>{item.priority} Priority</Tag></Space>}
+                      title={<Space>{item.title} <Tag color={item.priority === 'HIGH' ? 'error' : 'warning'} className="!rounded-full px-3">{item.priority} Priority</Tag></Space>}
                       description={item.description}
                     />
                   </List.Item>
@@ -105,8 +105,8 @@ export default function DashboardPage() {
         </Col>
         <Col xs={24} lg={8}>
           <Card 
-            title={<Space><HistoryOutlined /> Recent Pulse</Space>} 
-            className="side-card"
+            title={<Space className="font-bold"><HistoryOutlined className="text-[#FFD700]" /> Recent Pulse</Space>} 
+            className="!rounded-2xl !border-[#e5e4e7] !shadow-sm"
           >
             {isActivityLoading ? (
               <Skeleton active />
@@ -115,12 +115,12 @@ export default function DashboardPage() {
                 size="small"
                 dataSource={activity.activities}
                 renderItem={(item) => (
-                  <List.Item>
+                  <List.Item className="!px-0">
                     <Space direction="vertical" size={0}>
-                      <Text type="secondary" style={{ fontSize: '11px' }}>{item.timestamp}</Text>
+                      <Text type="secondary" className="text-[11px] font-medium opacity-60 uppercase">{item.timestamp}</Text>
                       <Space>
-                        <Tag color={item.type === 'OUTREACH' ? 'blue' : 'orange'} style={{ fontSize: '10px' }}>{item.type}</Tag>
-                        <Text style={{ fontSize: '13px' }}>{item.title}</Text>
+                        <Tag color={item.type === 'OUTREACH' ? 'blue' : 'orange'} className="!text-[10px] !rounded-md uppercase font-bold">{item.type}</Tag>
+                        <Text className="text-[13px] font-medium">{item.title}</Text>
                       </Space>
                     </Space>
                   </List.Item>
@@ -133,29 +133,29 @@ export default function DashboardPage() {
         </Col>
       </Row>
 
-      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>
+      <Row gutter={[24, 24]} className="mt-8">
         <Col xs={24} md={12}>
           <Card 
-            className="action-card yellow-gradient-bg"
+            className="!rounded-2xl !border-[#e5e4e7] !shadow-sm transition-all duration-300 hover:-translate-y-1 hover:!shadow-lg !bg-gradient-to-br !from-[#FFD700] !to-[#EAB308] cursor-pointer group"
             bordered={false}
             onClick={() => navigate('/generate')}
           >
-            <div className="action-card-content">
-              <Title level={4}>Execute New Outreach</Title>
-              <Paragraph>Leverage advanced generative AI to create personalized, high-converting messages based on your professional profile.</Paragraph>
-              <Button type="default" icon={<ArrowRightOutlined />}>Start Generation</Button>
+            <div className="p-2">
+              <Title level={4} className="!mb-2">Execute New Outreach</Title>
+              <Paragraph className="!mb-6 opacity-80">Leverage advanced generative AI to create personalized, high-converting messages based on your professional profile.</Paragraph>
+              <Button type="default" icon={<ArrowRightOutlined />} className="!bg-white !border-none !rounded-lg !font-bold py-5 group-hover:!bg-white/90">Start Generation</Button>
             </div>
           </Card>
         </Col>
         <Col xs={24} md={12}>
           <Card 
-            className="action-card"
+            className="!rounded-2xl !border-[#e5e4e7] !shadow-sm transition-all duration-300 hover:-translate-y-1 hover:!shadow-lg cursor-pointer group hover:!border-[#FFD700]"
             onClick={() => navigate('/profile')}
           >
-            <div className="action-card-content">
-              <Title level={4}>Professional Profile Management</Title>
-              <Paragraph>Manage your professional experience and preferences to optimize AI-powered matching and precision.</Paragraph>
-              <Button type="primary" icon={<ArrowRightOutlined />}>Refine Profile</Button>
+            <div className="p-2">
+               <Title level={4} className="!mb-2">Professional Profile Management</Title>
+               <Paragraph className="!mb-6 text-gray-500">Manage your professional experience and preferences to optimize AI-powered matching and precision.</Paragraph>
+               <Button type="primary" icon={<ArrowRightOutlined />} className="!bg-[#FFD700] !text-black !border-none !rounded-lg !font-bold py-5 hover:!bg-[#EAB308]">Refine Profile</Button>
             </div>
           </Card>
         </Col>
