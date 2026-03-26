@@ -73,11 +73,12 @@ export default function MessageGenerationPage() {
 
       <Row gutter={[24, 24]}>
         <Col xs={24} lg={16}>
-          <Card className="!rounded-2xl shadow-premium !border-[#e5e4e7] p-4 bg-white overflow-hidden">
+          <Card className="!rounded-2xl shadow-premium !border-[#e5e4e7] p-2 sm:p-4 bg-white overflow-hidden">
             <Steps 
               current={currentStep} 
               items={steps} 
-              className="mb-10"
+              className="mb-8 md:mb-10 text-xs sm:text-base"
+              size={window.innerWidth < 768 ? 'small' : 'default'}
             />
 
             {currentStep === 0 && (
@@ -88,24 +89,24 @@ export default function MessageGenerationPage() {
                 className="animate-in fade-in slide-in-from-bottom-4 duration-500"
               >
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col xs={24} sm={12}>
                     <Form.Item label={<span className="text-xs font-bold uppercase tracking-wider text-gray-500">Target Company</span>} name="company" rules={[{ required: true }]}>
                       <Input prefix={<ProjectOutlined className="text-gray-400 mr-2" />} placeholder="e.g. Google" size="large" className="!rounded-lg" />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col xs={24} sm={12}>
                     <Form.Item label={<span className="text-xs font-bold uppercase tracking-wider text-gray-500">Target Role</span>} name="role" rules={[{ required: true }]}>
                       <Input placeholder="e.g. Senior Frontend Engineer" size="large" className="!rounded-lg" />
                     </Form.Item>
                   </Col>
                 </Row>
                 <Row gutter={16}>
-                  <Col span={12}>
+                  <Col xs={24} sm={12}>
                     <Form.Item label={<span className="text-xs font-bold uppercase tracking-wider text-gray-500">Recruiter Name</span>} name="recruiter" rules={[{ required: true }]}>
                       <Input prefix={<UserOutlined className="text-gray-400 mr-2" />} placeholder="e.g. Jane Smith" size="large" className="!rounded-lg" />
                     </Form.Item>
                   </Col>
-                  <Col span={12}>
+                  <Col xs={24} sm={12}>
                     <Form.Item label={<span className="text-xs font-bold uppercase tracking-wider text-gray-500">Tone of Voice</span>} name="tone">
                       <Select size="large" className="!rounded-lg">
                         <Select.Option value="professional">Professional & Technical</Select.Option>
@@ -117,7 +118,7 @@ export default function MessageGenerationPage() {
                 </Row>
                 <Form.Item label={<span className="text-xs font-bold uppercase tracking-wider text-gray-500">Strategic Context</span>} name="context">
                   <TextArea 
-                    rows={4} 
+                    rows={window.innerWidth < 768 ? 3 : 4} 
                     className="!rounded-lg"
                     placeholder="List specific experiences or themes you want to emphasize..." 
                   />
@@ -138,10 +139,10 @@ export default function MessageGenerationPage() {
             )}
 
             {currentStep === 1 && (
-              <div className="text-center py-16 px-8 animate-pulse text-gray-500">
-                <ThunderboltOutlined spin className="text-6xl text-[#FFD700] mb-6" />
-                <Title level={3} className="!mb-2">Synthesizing...</Title>
-                <Paragraph className="text-sm font-medium">Cross-referencing your profile with target requirements.</Paragraph>
+              <div className="text-center py-10 md:py-16 px-4 md:px-8 animate-pulse text-gray-500">
+                <ThunderboltOutlined spin className="text-4xl md:text-6xl text-[#FFD700] mb-6" />
+                <Title level={3} className="!mb-2 !text-xl md:!text-3xl">Synthesizing...</Title>
+                <Paragraph className="text-xs md:text-sm font-medium">Cross-referencing your profile with target requirements.</Paragraph>
               </div>
             )}
 

@@ -153,9 +153,9 @@ export default function DashboardPage() {
             onClick={() => navigate('/profile')}
           >
             <div className="p-2">
-              <Title level={4} className="!mb-2">Professional Profile Management</Title>
-              <Paragraph className="!mb-6 text-gray-500">Manage your professional experience and preferences to optimize AI-powered matching and precision.</Paragraph>
-              <Button type="primary" icon={<ArrowRightOutlined />} className="!bg-[#FFD700] !text-black !border-none !rounded-lg !font-bold py-5 hover:!bg-[#EAB308]">Refine Profile</Button>
+               <Title level={4} className="!mb-2">Professional Profile Management</Title>
+               <Paragraph className="!mb-6 text-gray-500">Manage your professional experience and preferences to optimize AI-powered matching and precision.</Paragraph>
+               <Button type="primary" icon={<ArrowRightOutlined />} className="!bg-[#FFD700] !text-black !border-none !rounded-lg !font-bold py-5 hover:!bg-[#EAB308]">Refine Profile</Button>
             </div>
           </Card>
         </Col>
